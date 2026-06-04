@@ -1,39 +1,11 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { getShows } from "@/lib/supabase";
-import { ShowCard } from "@/app/components/ShowCard";
+import { ShowsWithFilters } from "@/app/components/ShowsWithFilters";
 
 async function ShowsList() {
   const shows = await getShows();
-
-  if (shows.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-white py-24 text-center">
-        <div className="mb-4 text-5xl">🃏</div>
-        <h3 className="text-lg font-semibold text-gray-700">
-          No shows listed yet
-        </h3>
-        <p className="mt-2 max-w-sm text-sm text-gray-500">
-          Shows will appear here once they&apos;re added. Know of an upcoming
-          event? Submit it and help the community.
-        </p>
-        <Link
-          href="#"
-          className="mt-6 rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-400"
-        >
-          Submit a Show
-        </Link>
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {shows.map((show) => (
-        <ShowCard key={show.id} show={show} />
-      ))}
-    </div>
-  );
+  return <ShowsWithFilters shows={shows} />;
 }
 
 function ShowsListSkeleton() {

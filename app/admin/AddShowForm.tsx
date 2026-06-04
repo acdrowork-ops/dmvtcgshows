@@ -7,7 +7,7 @@ const FIELD = "rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-9
 const LABEL = "text-sm font-medium text-gray-700";
 
 const DMV_STATES = ["DC", "MD", "VA"];
-const SHOW_TYPES = ["TCG", "Pokemon", "Magic: The Gathering", "Yu-Gi-Oh!", "One Piece", "Lorcana", "Digimon", "Mixed"];
+const SHOW_TYPES = ["TCG", "Pokemon", "Magic: The Gathering", "Yu-Gi-Oh!", "One Piece", "Lorcana", "Digimon", "Mixed", "Sports"];
 
 export function AddShowForm() {
   const [state, action, isPending] = useActionState<ShowState, FormData>(
@@ -34,7 +34,7 @@ export function AddShowForm() {
       )}
 
       <form key={formKey} action={action} className="flex flex-col gap-6">
-        {/* Required fields */}
+        {/* Show details */}
         <fieldset className="grid gap-4 sm:grid-cols-2">
           <legend className="col-span-full mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">
             Show details
@@ -62,13 +62,6 @@ export function AddShowForm() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="time" className={LABEL}>
-              Time <span className="text-red-400">*</span>
-            </label>
-            <input id="time" name="time" type="time" required className={FIELD} />
-          </div>
-
-          <div className="flex flex-col gap-1.5">
             <label htmlFor="show_type" className={LABEL}>
               Show type <span className="text-red-400">*</span>
             </label>
@@ -77,6 +70,20 @@ export function AddShowForm() {
                 <option key={t} value={t}>{t}</option>
               ))}
             </select>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="start_time" className={LABEL}>
+              Start time <span className="text-red-400">*</span>
+            </label>
+            <input id="start_time" name="start_time" type="time" required className={FIELD} />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="end_time" className={LABEL}>
+              End time
+            </label>
+            <input id="end_time" name="end_time" type="time" className={FIELD} />
           </div>
 
           <div className="flex flex-col gap-1.5">
@@ -192,16 +199,49 @@ export function AddShowForm() {
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="social_url" className={LABEL}>
-              Social URL
+            <label htmlFor="instagram_url" className={LABEL}>
+              Instagram URL
             </label>
             <input
-              id="social_url"
-              name="social_url"
+              id="instagram_url"
+              name="instagram_url"
+              type="url"
+              placeholder="https://instagram.com/..."
+              className={FIELD}
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="facebook_url" className={LABEL}>
+              Facebook URL
+            </label>
+            <input
+              id="facebook_url"
+              name="facebook_url"
               type="url"
               placeholder="https://facebook.com/..."
               className={FIELD}
             />
+          </div>
+        </fieldset>
+
+        {/* Flyer */}
+        <fieldset className="flex flex-col gap-3">
+          <legend className="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">
+            Flyer image
+          </legend>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="flyer" className={LABEL}>
+              Upload flyer
+            </label>
+            <input
+              id="flyer"
+              name="flyer"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              className="text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-indigo-700 hover:file:bg-indigo-100"
+            />
+            <p className="text-xs text-gray-400">JPEG, PNG, WebP or GIF · max 5 MB</p>
           </div>
         </fieldset>
 

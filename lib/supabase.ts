@@ -4,7 +4,8 @@ export type Show = {
   id: string;
   name: string;
   date: string;
-  time: string;
+  start_time: string;
+  end_time: string | null;
   venue: string;
   city: string;
   state: string;
@@ -16,6 +17,9 @@ export type Show = {
   is_first_event: boolean;
   website_url: string | null;
   social_url: string | null;
+  instagram_url: string | null;
+  facebook_url: string | null;
+  flyer_image_url: string | null;
   created_at: string;
 };
 
@@ -39,4 +43,16 @@ export async function getShows(): Promise<Show[]> {
 
   if (error) throw new Error(error.message);
   return data ?? [];
+}
+
+export async function getShowById(id: string): Promise<Show | null> {
+  const supabase = getClient();
+  const { data, error } = await supabase
+    .from("shows")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) return null;
+  return data;
 }
