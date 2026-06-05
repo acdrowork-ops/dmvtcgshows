@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/admin/actions";
 import { AddShowForm } from "@/app/admin/AddShowForm";
+import { ShowsManager } from "@/app/admin/ShowsManager";
+import { getShows } from "@/lib/supabase";
 
 export default async function AdminPage() {
   const supabase = await createClient();
@@ -12,6 +14,8 @@ export default async function AdminPage() {
 
   // Hard auth guard — proxy does an optimistic cookie check; this validates the token.
   if (!user) redirect("/admin/login");
+
+  const shows = await getShows();
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 font-sans">
@@ -57,6 +61,16 @@ export default async function AdminPage() {
 
           <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
             <AddShowForm />
+          </div>
+
+          <div className="mt-16">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Manage shows</h2>
+              <p className="mt-1 text-sm text-gray-500">
+                {shows.length} show{shows.length !== 1 ? "s" : ""} in the directory.
+              </p>
+            </div>
+            <ShowsManager shows={shows} />
           </div>
         </div>
       </main>
