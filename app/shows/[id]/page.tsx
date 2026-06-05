@@ -2,14 +2,34 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getShowById } from "@/lib/supabase";
 
-function formatDate(dateStr: string): string {
-  const [year, month, day] = dateStr.split("-").map(Number);
-  return new Date(year, month - 1, day).toLocaleDateString("en-US", {
+function parseDate(dateStr: string): Date {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function formatDateRange(start: string, end: string | null): string {
+  const s = parseDate(start);
+  if (!end) {
+    return s.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
+  const e = parseDate(end);
+  const startStr = s.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  });
+  const endStr = e.toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric",
   });
+  return `${startStr} – ${endStr}`;
 }
 
 function formatEntryFee(fee: string): string {
@@ -128,7 +148,7 @@ export default async function ShowPage({
                 <dt className="shrink-0 text-xl leading-6">📅</dt>
                 <dd>
                   <span className="font-semibold text-gray-900">
-                    {formatDate(show.date)}
+                    {formatDateRange(show.date, show.end_date)}
                   </span>
                   <span className="mt-0.5 block text-gray-500">{timeRange}</span>
                 </dd>

@@ -4,6 +4,7 @@ export type Show = {
   id: string;
   name: string;
   date: string;
+  end_date: string | null;
   start_time: string;
   end_time: string | null;
   venue: string;

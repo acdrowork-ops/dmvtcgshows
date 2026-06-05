@@ -56,9 +56,16 @@ export function AddShowForm() {
 
           <div className="flex flex-col gap-1.5">
             <label htmlFor="date" className={LABEL}>
-              Date <span className="text-red-400">*</span>
+              Start date <span className="text-red-400">*</span>
             </label>
             <input id="date" name="date" type="date" required className={FIELD} />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="end_date" className={LABEL}>
+              End date
+            </label>
+            <input id="end_date" name="end_date" type="date" className={FIELD} />
           </div>
 
           <div className="flex flex-col gap-1.5">

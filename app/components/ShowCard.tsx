@@ -1,14 +1,34 @@
 import type { Show } from "@/lib/supabase";
 import Link from "next/link";
 
-function formatDate(dateStr: string): string {
-  const [year, month, day] = dateStr.split("-").map(Number);
-  return new Date(year, month - 1, day).toLocaleDateString("en-US", {
-    weekday: "long",
+function parseDate(dateStr: string): Date {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function formatDateRange(start: string, end: string | null): string {
+  const s = parseDate(start);
+  if (!end) {
+    return s.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
+  const e = parseDate(end);
+  const startStr = s.toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "long",
+    day: "numeric",
+  });
+  const endStr = e.toLocaleDateString("en-US", {
+    weekday: "short",
     month: "long",
     day: "numeric",
     year: "numeric",
   });
+  return `${startStr} – ${endStr}`;
 }
 
 function formatEntryFee(fee: string): string {
@@ -83,7 +103,7 @@ export function ShowCard({ show }: { show: Show }) {
         <div className="flex items-start gap-2">
           <dt className="w-4 shrink-0 text-base leading-5">📅</dt>
           <dd>
-            {formatDate(show.date)} &mdash; {timeRange}
+            {formatDateRange(show.date, show.end_date)} &mdash; {timeRange}
           </dd>
         </div>
 

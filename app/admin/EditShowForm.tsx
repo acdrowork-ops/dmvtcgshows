@@ -73,7 +73,7 @@ export function EditShowForm({
 
           <div className="flex flex-col gap-1.5">
             <label htmlFor={f("date")} className={LABEL}>
-              Date <span className="text-red-400">*</span>
+              Start date <span className="text-red-400">*</span>
             </label>
             <input
               id={f("date")}
@@ -81,6 +81,19 @@ export function EditShowForm({
               type="date"
               required
               defaultValue={show.date}
+              className={FIELD}
+            />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor={f("end_date")} className={LABEL}>
+              End date
+            </label>
+            <input
+              id={f("end_date")}
+              name="end_date"
+              type="date"
+              defaultValue={show.end_date ?? ""}
               className={FIELD}
             />
           </div>

@@ -57,6 +57,7 @@ export async function addShow(
   const { error } = await supabase.from("shows").insert({
     name: formData.get("name") as string,
     date: formData.get("date") as string,
+    end_date: str("end_date"),
     start_time: formData.get("start_time") as string,
     end_time: str("end_time"),
     venue: formData.get("venue") as string,
@@ -112,6 +113,7 @@ export async function updateShow(
   const update: Record<string, unknown> = {
     name: formData.get("name") as string,
     date: formData.get("date") as string,
+    end_date: str("end_date"),
     start_time: formData.get("start_time") as string,
     end_time: str("end_time"),
     venue: formData.get("venue") as string,
