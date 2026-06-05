@@ -11,6 +11,12 @@ function formatDate(dateStr: string): string {
   });
 }
 
+function formatEntryFee(fee: string): string {
+  const t = fee.trim();
+  if (/^free$/i.test(t) || t.startsWith("$")) return t;
+  return `$${t}`;
+}
+
 function formatTime(timeStr: string | null | undefined): string {
   if (!timeStr) return "";
   const [hours, minutes] = timeStr.split(":").map(Number);
@@ -82,7 +88,7 @@ export function ShowCard({ show }: { show: Show }) {
         {show.entry_fee && (
           <div className="flex items-start gap-2">
             <dt className="w-4 shrink-0 text-base leading-5">🎟</dt>
-            <dd>Entry: {show.entry_fee}</dd>
+            <dd>Entry: {formatEntryFee(show.entry_fee!)}</dd>
           </div>
         )}
 

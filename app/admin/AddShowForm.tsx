@@ -225,6 +225,25 @@ export function AddShowForm() {
           </div>
         </fieldset>
 
+        {/* Notes */}
+        <fieldset className="flex flex-col gap-3">
+          <legend className="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">
+            Notes
+          </legend>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="notes" className={LABEL}>
+              Additional notes
+            </label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows={3}
+              placeholder="Parking info, what to bring, special rules…"
+              className={`${FIELD} resize-y`}
+            />
+          </div>
+        </fieldset>
+
         {/* Flyer */}
         <fieldset className="flex flex-col gap-3">
           <legend className="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">

@@ -70,6 +70,7 @@ export async function addShow(
     instagram_url: str("instagram_url"),
     facebook_url: str("facebook_url"),
     flyer_image_url,
+    notes: str("notes"),
     is_recurring: formData.get("is_recurring") === "on",
     is_first_event: formData.get("is_first_event") === "on",
   });

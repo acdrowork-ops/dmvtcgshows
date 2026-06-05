@@ -20,6 +20,7 @@ export type Show = {
   instagram_url: string | null;
   facebook_url: string | null;
   flyer_image_url: string | null;
+  notes: string | null;
   created_at: string;
 };
 

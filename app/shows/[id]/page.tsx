@@ -12,6 +12,12 @@ function formatDate(dateStr: string): string {
   });
 }
 
+function formatEntryFee(fee: string): string {
+  const t = fee.trim();
+  if (/^free$/i.test(t) || t.startsWith("$")) return t;
+  return `$${t}`;
+}
+
 function formatTime(timeStr: string | null | undefined): string {
   if (!timeStr) return "";
   const [hours, minutes] = timeStr.split(":").map(Number);
@@ -145,7 +151,7 @@ export default async function ShowPage({
                   <dt className="shrink-0 text-xl leading-6">🎟</dt>
                   <dd>
                     <span className="font-semibold text-gray-900">
-                      Entry: {show.entry_fee}
+                      Entry: {formatEntryFee(show.entry_fee!)}
                     </span>
                   </dd>
                 </div>
@@ -173,6 +179,18 @@ export default async function ShowPage({
                 </div>
               )}
             </dl>
+
+            {/* Notes */}
+            {show.notes && (
+              <div className="mt-6 border-t border-gray-100 pt-6">
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+                  Notes
+                </p>
+                <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-gray-500">
+                  {show.notes}
+                </p>
+              </div>
+            )}
 
             {/* Links */}
             {hasLinks && (
