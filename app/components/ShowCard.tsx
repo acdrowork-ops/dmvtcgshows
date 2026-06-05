@@ -43,7 +43,16 @@ export function ShowCard({ show }: { show: Show }) {
     show.social_url;
 
   return (
-    <div className="relative flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+    <div className="relative flex flex-col rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md overflow-hidden">
+      {show.flyer_image_url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={show.flyer_image_url}
+          alt=""
+          className="h-48 w-full object-cover"
+        />
+      )}
+      <div className="flex flex-col flex-1 p-6">
       {/* Header row */}
       <div className="mb-3 flex flex-wrap items-start gap-2">
         <span className="rounded-full bg-indigo-100 px-3 py-0.5 text-xs font-semibold text-indigo-700">
@@ -151,6 +160,7 @@ export function ShowCard({ show }: { show: Show }) {
           )}
         </div>
       )}
+      </div>
     </div>
   );
 }
