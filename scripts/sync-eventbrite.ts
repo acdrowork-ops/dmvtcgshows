@@ -17,18 +17,25 @@
  *   The trailing number is the organization ID. Add it to ORG_IDS below.
  *
  * Run: npm run sync-eventbrite
- * Requires: EVENTBRITE_API_KEY env var
+ * Requires: EVENTBRITE_API_KEY in .env.local (or set in the environment)
  */
 
-const API_KEY = process.env.EVENTBRITE_API_KEY;
+import { resolve } from "path";
+import * as dotenv from "dotenv";
+
+// tsx does not auto-load .env.local the way Next.js does — use dotenv.
+// override: true ensures .env.local always wins over any stale shell value.
+dotenv.config({ path: resolve(process.cwd(), ".env.local"), override: true });
+
+const API_KEY = process.env.EVENTBRITE_API_KEY?.trim();
 const TARGET_STATES = new Set(["VA", "MD", "DC"]);
 
 // ── Add Eventbrite organization IDs for DMV TCG event organizers here ─────────
 // Each entry is: [display label, org ID]
 const ORG_IDS: [string, string][] = [
-  // Examples — replace with real IDs found from eventbrite.com/o/... URLs:
-  // ["DMV Card Collectors",     "12345678901"],
-  // ["Mid-Atlantic TCG Events", "98765432109"],
+  ["Offsidez TCG", "121141959020"],
+  ["JM's GARAGE", "121175931172"],
+  ["Tidewater Cards and Collectibles","121188417972"]
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -218,10 +225,13 @@ async function main() {
   if (!API_KEY) {
     console.error("Error: EVENTBRITE_API_KEY is not set.");
     console.error(
-      "Set it before running:  EVENTBRITE_API_KEY=your_key npm run sync-eventbrite"
+      "Check that EVENTBRITE_API_KEY is present in .env.local"
     );
     process.exit(1);
   }
+
+  console.log(`API key loaded: ${API_KEY.slice(0, 4)}${"*".repeat(Math.max(0, API_KEY.length - 4))} (${API_KEY.length} chars)`);
+
 
   if (ORG_IDS.length === 0) {
     console.error("No organization IDs configured.");
