@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { getShows } from "@/lib/supabase";
 import { ShowsWithFilters } from "@/app/components/ShowsWithFilters";
+import { NavHeader } from "@/app/components/NavHeader";
+import { SuggestShowButton } from "@/app/components/SuggestShowButton";
 
 async function ShowsList() {
   const shows = await getShows();
@@ -24,31 +26,7 @@ function ShowsListSkeleton() {
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans">
-      {/* Nav */}
-      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className="text-xl font-bold tracking-tight text-gray-900"
-          >
-            DMV TCG Shows
-          </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium text-gray-600">
-            <Link
-              href="#upcoming"
-              className="transition-colors hover:text-gray-900"
-            >
-              Shows
-            </Link>
-            <Link href="#" className="transition-colors hover:text-gray-900">
-              Submit a Show
-            </Link>
-            <Link href="#" className="transition-colors hover:text-gray-900">
-              About
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <NavHeader />
 
       <main className="flex flex-col flex-1">
         {/* Hero */}
@@ -72,12 +50,9 @@ export default function Home() {
               >
                 Browse Upcoming Shows
               </Link>
-              <Link
-                href="#"
-                className="rounded-lg border border-white/20 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-              >
-                Submit a Show
-              </Link>
+              <SuggestShowButton className="rounded-lg border border-white/20 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+                Suggest a Show
+              </SuggestShowButton>
             </div>
           </div>
         </section>
