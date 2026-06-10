@@ -75,7 +75,7 @@ export function ShowCard({ show }: { show: Show }) {
       <div className="flex flex-col flex-1 p-6">
       {/* Header row */}
       <div className="mb-3 flex flex-wrap items-start gap-2">
-        <span className="rounded-full bg-indigo-100 px-3 py-0.5 text-xs font-semibold text-indigo-700">
+        <span className="rounded-full bg-blue-100 px-3 py-0.5 text-xs font-semibold text-blue-700">
           {show.show_type}
         </span>
         {show.is_first_event && (
@@ -93,7 +93,7 @@ export function ShowCard({ show }: { show: Show }) {
       <h3 className="mb-4 text-lg font-bold leading-snug text-gray-900">
         <Link
           href={`/shows/${show.id}`}
-          className="transition-colors hover:text-indigo-600 before:absolute before:inset-0 before:content-['']"
+          className="transition-colors hover:text-blue-600 before:absolute before:inset-0 before:content-['']"
         >
           {show.name}
         </Link>
@@ -143,7 +143,7 @@ export function ShowCard({ show }: { show: Show }) {
               href={show.website_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-medium text-indigo-600 hover:underline"
+              className="text-xs font-medium text-blue-600 hover:underline"
             >
               Website ↗
             </Link>
@@ -153,7 +153,7 @@ export function ShowCard({ show }: { show: Show }) {
               href={show.instagram_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-medium text-indigo-600 hover:underline"
+              className="text-xs font-medium text-blue-600 hover:underline"
             >
               Instagram ↗
             </Link>
@@ -163,7 +163,7 @@ export function ShowCard({ show }: { show: Show }) {
               href={show.facebook_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-medium text-indigo-600 hover:underline"
+              className="text-xs font-medium text-blue-600 hover:underline"
             >
               Facebook ↗
             </Link>
@@ -173,7 +173,7 @@ export function ShowCard({ show }: { show: Show }) {
               href={show.social_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-medium text-indigo-600 hover:underline"
+              className="text-xs font-medium text-blue-600 hover:underline"
             >
               Social ↗
             </Link>

@@ -30,27 +30,27 @@ export default function Home() {
 
       <main className="flex flex-col flex-1">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 px-6 py-28 text-center text-white">
-          <div className="mx-auto max-w-3xl">
-            <span className="mb-4 inline-block rounded-full bg-indigo-500/20 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-indigo-300 ring-1 ring-indigo-500/30">
+        <section className="border-b border-gray-100 bg-white px-6 py-16 sm:py-20">
+          <div className="mx-auto max-w-6xl">
+            <span className="mb-4 inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-blue-600 ring-1 ring-blue-100">
               DC · Maryland · Virginia
             </span>
-            <h1 className="mt-4 text-5xl font-extrabold leading-tight tracking-tight sm:text-6xl">
-              Find TCG Shows Near You
+            <h1 className="mt-3 max-w-2xl text-5xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-6xl">
+              Find <span className="text-blue-500">TCG Shows</span> in the DMV
             </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-300">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-gray-500">
               Your go-to directory for Trading Card Game shows, conventions, and
               vendor events across the DMV area. Whether you play Pokémon,
               Magic, One Piece, or Lorcana&mdash;we&apos;ve got you covered.
             </p>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="#upcoming"
-                className="rounded-lg bg-indigo-500 px-7 py-3 text-sm font-semibold text-white shadow-md transition-colors hover:bg-indigo-400"
+                className="rounded-lg bg-blue-500 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-400"
               >
                 Browse Upcoming Shows
               </Link>
-              <SuggestShowButton className="rounded-lg border border-white/20 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
+              <SuggestShowButton className="rounded-lg border border-gray-200 px-6 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600">
                 Suggest a Show
               </SuggestShowButton>
             </div>
@@ -78,7 +78,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white px-6 py-8 text-center text-sm text-gray-400">
+      <footer className="border-t border-gray-100 bg-gray-50 px-6 py-8 text-center text-sm text-gray-500">
         &copy; {new Date().getFullYear()} DMV TCG Shows &mdash; Built for the
         DMV collecting community.
       </footer>

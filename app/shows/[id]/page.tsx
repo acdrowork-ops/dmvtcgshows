@@ -101,7 +101,7 @@ export default async function ShowPage({
           <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
             {/* Badges */}
             <div className="mb-4 flex flex-wrap gap-2">
-              <span className="rounded-full bg-indigo-100 px-3 py-0.5 text-xs font-semibold text-indigo-700">
+              <span className="rounded-full bg-blue-100 px-3 py-0.5 text-xs font-semibold text-blue-700">
                 {show.show_type}
               </span>
               {show.is_first_event && (
@@ -197,7 +197,7 @@ export default async function ShowPage({
                     href={show.website_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-indigo-300 hover:text-indigo-600"
+                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
                   >
                     Website ↗
                   </Link>
@@ -207,7 +207,7 @@ export default async function ShowPage({
                     href={show.instagram_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-indigo-300 hover:text-indigo-600"
+                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
                   >
                     Instagram ↗
                   </Link>
@@ -217,7 +217,7 @@ export default async function ShowPage({
                     href={show.facebook_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-indigo-300 hover:text-indigo-600"
+                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
                   >
                     Facebook ↗
                   </Link>
@@ -227,7 +227,7 @@ export default async function ShowPage({
                     href={show.social_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-indigo-300 hover:text-indigo-600"
+                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
                   >
                     Social ↗
                   </Link>
@@ -239,7 +239,7 @@ export default async function ShowPage({
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white px-6 py-8 text-center text-sm text-gray-400">
+      <footer className="border-t border-gray-100 bg-gray-50 px-6 py-8 text-center text-sm text-gray-500">
         &copy; {new Date().getFullYear()} DMV TCG Shows &mdash; Built for the
         DMV collecting community.
       </footer>

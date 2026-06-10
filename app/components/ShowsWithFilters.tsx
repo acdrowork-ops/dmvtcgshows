@@ -39,8 +39,8 @@ function FilterButton({
       onClick={onClick}
       className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
         active
-          ? "bg-indigo-500 text-white"
-          : "border border-gray-200 bg-white text-gray-600 hover:border-indigo-300 hover:text-indigo-600"
+          ? "bg-blue-500 text-white"
+          : "border border-gray-200 bg-white text-gray-600 hover:border-blue-300 hover:text-blue-600"
       }`}
     >
       {children}
@@ -66,7 +66,7 @@ export function ShowsWithFilters({ shows }: { shows: Show[] }) {
         </p>
         <Link
           href="#"
-          className="mt-6 rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-indigo-400"
+          className="mt-6 rounded-lg bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-400"
         >
           Submit a Show
         </Link>
@@ -145,7 +145,7 @@ export function ShowsWithFilters({ shows }: { shows: Show[] }) {
               setTypeFilter("All");
               setFeeFilter("All");
             }}
-            className="mt-4 text-sm font-medium text-indigo-600 hover:underline"
+            className="mt-4 text-sm font-medium text-blue-600 hover:underline"
           >
             Clear all filters
           </button>

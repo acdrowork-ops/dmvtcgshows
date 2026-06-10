@@ -74,7 +74,7 @@ export default function AboutPage() {
                 that needs correcting? Use the suggestion form&mdash;it goes
                 directly to the site owner for review.
               </p>
-              <SuggestShowButton className="mt-5 inline-flex items-center gap-2 rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-indigo-400">
+              <SuggestShowButton className="mt-5 inline-flex items-center gap-2 rounded-lg bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-400">
                 Suggest a Show
               </SuggestShowButton>
             </div>
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 you&apos;d like&mdash;date, venue, website, social links,
                 whatever you have. We&apos;ll take it from there.
               </p>
-              <SuggestShowButton className="mt-5 inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:border-indigo-300 hover:text-indigo-600">
+              <SuggestShowButton className="mt-5 inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-colors hover:border-blue-300 hover:text-blue-600">
                 Get Your Show Listed
               </SuggestShowButton>
             </div>
@@ -112,7 +112,7 @@ export default function AboutPage() {
         </div>
       </main>
 
-      <footer className="border-t border-gray-200 bg-white px-6 py-8 text-center text-sm text-gray-400">
+      <footer className="border-t border-gray-100 bg-gray-50 px-6 py-8 text-center text-sm text-gray-500">
         &copy; {new Date().getFullYear()} DMV TCG Shows &mdash; Built for the
         DMV collecting community.
       </footer>
