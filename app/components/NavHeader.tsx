@@ -30,7 +30,7 @@ export function NavHeader({ showsHref = "#upcoming" }: { showsHref?: string }) {
             >
               Suggest a Show
             </button>
-            <Link href="#" className="transition-colors hover:text-gray-900">
+            <Link href="/about" className="transition-colors hover:text-gray-900">
               About
             </Link>
           </nav>
