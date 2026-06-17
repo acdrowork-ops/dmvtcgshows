@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/admin/actions";
 import { AddShowForm } from "@/app/admin/AddShowForm";
 import { ShowsManager } from "@/app/admin/ShowsManager";
-import { getShows } from "@/lib/supabase";
+import { getAllShows } from "@/lib/supabase";
 
 export default async function AdminPage() {
   const supabase = await createClient();
@@ -15,7 +15,7 @@ export default async function AdminPage() {
   // Hard auth guard — proxy does an optimistic cookie check; this validates the token.
   if (!user) redirect("/admin/login");
 
-  const shows = await getShows();
+  const shows = await getAllShows();
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50 font-sans">

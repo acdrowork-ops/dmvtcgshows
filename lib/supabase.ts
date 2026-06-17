@@ -38,6 +38,19 @@ function getClient() {
 
 export async function getShows(): Promise<Show[]> {
   const supabase = getClient();
+  const today = new Date().toISOString().split("T")[0];
+  const { data, error } = await supabase
+    .from("shows")
+    .select("*")
+    .or(`end_date.gte.${today},and(end_date.is.null,date.gte.${today})`)
+    .order("date", { ascending: true });
+
+  if (error) throw new Error(error.message);
+  return data ?? [];
+}
+
+export async function getAllShows(): Promise<Show[]> {
+  const supabase = getClient();
   const { data, error } = await supabase
     .from("shows")
     .select("*")
