@@ -99,7 +99,7 @@ export default async function ShowPage({
       <NavHeader showsHref="/#upcoming" />
 
       <main className="flex flex-col flex-1 bg-gray-50">
-        <div className="mx-auto w-full max-w-3xl px-6 py-12">
+        <div className="mx-auto w-full max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
           <Link
             href="/"
             className="mb-8 inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-gray-900"
@@ -120,7 +120,7 @@ export default async function ShowPage({
           )}
 
           {/* Detail card */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8">
             {/* Badges */}
             <div className="mb-4 flex flex-wrap gap-2">
               <span className="rounded-full bg-blue-100 px-3 py-0.5 text-xs font-semibold text-blue-700">

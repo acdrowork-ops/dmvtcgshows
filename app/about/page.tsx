@@ -15,7 +15,7 @@ export default function AboutPage() {
       <NavHeader showsHref="/#upcoming" />
 
       <main className="flex flex-col flex-1 bg-gray-50">
-        <div className="mx-auto w-full max-w-4xl px-6 py-16">
+        <div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
           {/* Page heading */}
           <div className="mb-10">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
@@ -28,7 +28,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {/* What this site is */}
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8">
               <h2 className="text-xl font-bold text-gray-900">
                 What is DMV TCG Shows?
               </h2>
@@ -48,7 +48,7 @@ export default function AboutPage() {
             </div>
 
             {/* Who built it */}
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8">
               <h2 className="text-xl font-bold text-gray-900">Who built it?</h2>
               <p className="mt-4 leading-relaxed text-gray-600">
                 This site was built by a local collector based in Northern
@@ -61,7 +61,7 @@ export default function AboutPage() {
             </div>
 
             {/* How shows get listed */}
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8">
               <h2 className="text-xl font-bold text-gray-900">
                 How do shows get listed?
               </h2>
@@ -81,7 +81,7 @@ export default function AboutPage() {
             </div>
 
             {/* For organizers */}
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8">
               <h2 className="text-xl font-bold text-gray-900">
                 Are you a show organizer?
               </h2>

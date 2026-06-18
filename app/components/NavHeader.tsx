@@ -10,7 +10,7 @@ export function NavHeader({ showsHref = "#upcoming" }: { showsHref?: string }) {
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
           <Link href="/" className="flex items-center gap-2.5">
             <svg
               width="28"
@@ -39,7 +39,7 @@ export function NavHeader({ showsHref = "#upcoming" }: { showsHref?: string }) {
               <span className="text-base font-medium text-gray-400">Shows</span>
             </span>
           </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium text-gray-600">
+          <nav className="flex items-center gap-4 text-sm font-medium text-gray-600 sm:gap-6">
             <Link
               href={showsHref}
               className="transition-colors hover:text-gray-900"
@@ -48,7 +48,7 @@ export function NavHeader({ showsHref = "#upcoming" }: { showsHref?: string }) {
             </Link>
             <button
               onClick={() => setModalOpen(true)}
-              className="transition-colors hover:text-gray-900"
+              className="hidden transition-colors hover:text-gray-900 sm:block"
             >
               Suggest a Show
             </button>

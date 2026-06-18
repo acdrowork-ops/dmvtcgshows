@@ -37,12 +37,12 @@ export default function Home() {
 
       <main className="flex flex-col flex-1">
         {/* Hero */}
-        <section className="border-b border-gray-100 bg-white px-6 py-16 sm:py-20">
+        <section className="border-b border-gray-100 bg-white px-4 py-12 sm:px-6 sm:py-16 md:py-20">
           <div className="mx-auto max-w-6xl">
             <span className="mb-4 inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-blue-600 ring-1 ring-blue-100">
               DC · Maryland · Virginia
             </span>
-            <h1 className="mt-3 max-w-2xl text-5xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-6xl">
+            <h1 className="mt-3 max-w-2xl text-4xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
               Find <span className="text-blue-500">TCG Shows</span> in the DMV
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-gray-500">
@@ -65,7 +65,7 @@ export default function Home() {
         </section>
 
         {/* Upcoming Shows */}
-        <section id="upcoming" className="flex-1 bg-gray-50 px-6 py-20">
+        <section id="upcoming" className="flex-1 bg-gray-50 px-4 py-12 sm:px-6 sm:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mb-10">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900">
