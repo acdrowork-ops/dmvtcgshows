@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
 import { getShows } from "@/lib/supabase";
+
+export const metadata: Metadata = {
+  title: "DMV TCG Shows | Find TCG Shows in the DMV",
+  description:
+    "Browse upcoming Trading Card Game shows, vendor events, and conventions in the DC, Maryland, and Virginia area.",
+};
 import { ShowsWithFilters } from "@/app/components/ShowsWithFilters";
 import { NavHeader } from "@/app/components/NavHeader";
 import { SuggestShowButton } from "@/app/components/SuggestShowButton";

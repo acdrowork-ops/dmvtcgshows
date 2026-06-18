@@ -13,8 +13,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DMV TCG Shows",
-  description: "Find Trading Card Game shows in the DC, Maryland, and Virginia area.",
+  title: "DMV TCG Shows | Trading Card Game Shows in DC, Maryland & Virginia",
+  description:
+    "Find upcoming Trading Card Game shows, conventions, and vendor events in the DMV area. Pokemon, Magic, One Piece, Lorcana and more.",
+  openGraph: {
+    title: "DMV TCG Shows | Trading Card Game Shows in DC, Maryland & Virginia",
+    description:
+      "Find upcoming Trading Card Game shows, conventions, and vendor events in the DMV area. Pokemon, Magic, One Piece, Lorcana and more.",
+    url: "https://www.dmvtcgshows.com",
+  },
 };
 
 export default function RootLayout({

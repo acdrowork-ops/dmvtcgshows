@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { NavHeader } from "@/app/components/NavHeader";
 import { SuggestShowButton } from "@/app/components/SuggestShowButton";
 
-export const metadata = {
-  title: "About — DMV TCG Shows",
+export const metadata: Metadata = {
+  title: "About | DMV TCG Shows",
   description:
     "Learn about DMV TCG Shows, the community-driven directory of Trading Card Game events in the DC, Maryland, and Virginia area.",
 };

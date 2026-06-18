@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getShowById } from "@/lib/supabase";
@@ -49,6 +50,27 @@ function formatTime(timeStr: string | null | undefined): string {
     minute: "2-digit",
     hour12: true,
   });
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const show = await getShowById(id);
+  if (!show) return {};
+
+  const date = parseDate(show.date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  return {
+    title: `${show.name} | DMV TCG Shows`,
+    description: `${show.show_type} at ${show.venue} in ${show.city}, ${show.state} on ${date}.`,
+  };
 }
 
 export default async function ShowPage({
