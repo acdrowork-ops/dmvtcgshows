@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+
+export const revalidate = 60;
 import Link from "next/link";
 import { getShows } from "@/lib/supabase";
 

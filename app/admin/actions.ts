@@ -78,6 +78,7 @@ export async function addShow(
   });
 
   if (error) return { error: error.message };
+  revalidatePath("/", "layout");
   return { success: true };
 }
 
@@ -136,6 +137,7 @@ export async function updateShow(
 
   const { error } = await supabase.from("shows").update(update).eq("id", id);
   if (error) return { error: error.message };
+  revalidatePath("/", "layout");
   return { success: true };
 }
 
@@ -143,6 +145,7 @@ export async function deleteShow(id: string): Promise<ShowState> {
   const supabase = await createClient();
   const { error } = await supabase.from("shows").delete().eq("id", id);
   if (error) return { error: error.message };
+  revalidatePath("/", "layout");
   return { success: true };
 }
 
