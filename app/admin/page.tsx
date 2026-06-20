@@ -30,6 +30,20 @@ export default async function AdminPage() {
               DMV TCG Shows
             </Link>
             <span className="text-sm text-gray-400">/ Admin</span>
+            <nav className="ml-2 flex items-center gap-1">
+              <Link
+                href="/admin"
+                className="rounded-md bg-gray-100 px-3 py-1 text-sm font-medium text-gray-900"
+              >
+                Shows
+              </Link>
+              <Link
+                href="/admin/suggestions"
+                className="rounded-md px-3 py-1 text-sm text-gray-600 hover:bg-gray-100"
+              >
+                Suggestions
+              </Link>
+            </nav>
           </div>
 
           <div className="flex items-center gap-4">

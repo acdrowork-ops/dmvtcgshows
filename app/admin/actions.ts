@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export type AuthState = { error: string } | undefined;
 export type ShowState = { error: string } | { success: true } | undefined;
@@ -143,4 +144,14 @@ export async function deleteShow(id: string): Promise<ShowState> {
   const { error } = await supabase.from("shows").delete().eq("id", id);
   if (error) return { error: error.message };
   return { success: true };
+}
+
+export async function markSuggestionReviewed(id: string): Promise<void> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return;
+  await supabase.from("suggestions").update({ reviewed: true }).eq("id", id);
+  revalidatePath("/admin/suggestions");
 }
