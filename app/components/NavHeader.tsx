@@ -46,6 +46,12 @@ export function NavHeader({ showsHref = "#upcoming" }: { showsHref?: string }) {
             >
               Shows
             </Link>
+            <Link
+              href="/calendar"
+              className="transition-colors hover:text-gray-900"
+            >
+              Calendar
+            </Link>
             <button
               onClick={() => setModalOpen(true)}
               className="hidden transition-colors hover:text-gray-900 sm:block"
