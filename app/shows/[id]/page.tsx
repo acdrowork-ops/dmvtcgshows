@@ -52,6 +52,9 @@ function formatTime(timeStr: string | null | undefined): string {
   });
 }
 
+const LINK_BTN =
+  "rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600";
+
 export async function generateMetadata({
   params,
 }: {
@@ -88,11 +91,12 @@ export default async function ShowPage({
       : formatTime(show.start_time)
     : "";
 
+  const primaryHasLinks =
+    show.website_url || show.instagram_url || show.facebook_url || show.social_url;
+
   const hasLinks =
-    show.website_url ||
-    show.instagram_url ||
-    show.facebook_url ||
-    show.social_url;
+    primaryHasLinks ||
+    show.organizers?.some((o) => o.website_url || o.instagram_url || o.facebook_url);
 
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans">
@@ -197,6 +201,19 @@ export default async function ShowPage({
                   </dd>
                 </div>
               )}
+
+              {show.organizers?.map((org, i) =>
+                org.name ? (
+                  <div key={i} className="flex items-start gap-3">
+                    <dt className="shrink-0 text-xl leading-6">🧑‍💼</dt>
+                    <dd>
+                      <span className="font-semibold text-gray-900">
+                        {org.name}
+                      </span>
+                    </dd>
+                  </div>
+                ) : null
+              )}
             </dl>
 
             {/* Notes */}
@@ -213,47 +230,54 @@ export default async function ShowPage({
 
             {/* Links */}
             {hasLinks && (
-              <div className="mt-8 flex flex-wrap gap-3 border-t border-gray-100 pt-6">
-                {show.website_url && (
-                  <Link
-                    href={show.website_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
-                  >
-                    Website ↗
-                  </Link>
+              <div className="mt-8 border-t border-gray-100 pt-6 flex flex-col gap-3">
+                {primaryHasLinks && (
+                  <div className="flex flex-wrap gap-3">
+                    {show.website_url && (
+                      <Link href={show.website_url} target="_blank" rel="noopener noreferrer" className={LINK_BTN}>
+                        Website ↗
+                      </Link>
+                    )}
+                    {show.instagram_url && (
+                      <Link href={show.instagram_url} target="_blank" rel="noopener noreferrer" className={LINK_BTN}>
+                        Instagram ↗
+                      </Link>
+                    )}
+                    {show.facebook_url && (
+                      <Link href={show.facebook_url} target="_blank" rel="noopener noreferrer" className={LINK_BTN}>
+                        Facebook ↗
+                      </Link>
+                    )}
+                    {show.social_url && !show.instagram_url && !show.facebook_url && (
+                      <Link href={show.social_url} target="_blank" rel="noopener noreferrer" className={LINK_BTN}>
+                        Social ↗
+                      </Link>
+                    )}
+                  </div>
                 )}
-                {show.instagram_url && (
-                  <Link
-                    href={show.instagram_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
-                  >
-                    Instagram ↗
-                  </Link>
-                )}
-                {show.facebook_url && (
-                  <Link
-                    href={show.facebook_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
-                  >
-                    Facebook ↗
-                  </Link>
-                )}
-                {show.social_url && !show.instagram_url && !show.facebook_url && (
-                  <Link
-                    href={show.social_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-blue-300 hover:text-blue-600"
-                  >
-                    Social ↗
-                  </Link>
-                )}
+                {show.organizers?.map((org, i) => {
+                  const orgHasLinks = org.website_url || org.instagram_url || org.facebook_url;
+                  if (!orgHasLinks) return null;
+                  return (
+                    <div key={i} className="flex flex-wrap gap-3">
+                      {org.website_url && (
+                        <Link href={org.website_url} target="_blank" rel="noopener noreferrer" className={LINK_BTN}>
+                          Website ↗
+                        </Link>
+                      )}
+                      {org.instagram_url && (
+                        <Link href={org.instagram_url} target="_blank" rel="noopener noreferrer" className={LINK_BTN}>
+                          Instagram ↗
+                        </Link>
+                      )}
+                      {org.facebook_url && (
+                        <Link href={org.facebook_url} target="_blank" rel="noopener noreferrer" className={LINK_BTN}>
+                          Facebook ↗
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>

@@ -20,6 +20,12 @@ export type Show = {
   social_url: string | null;
   instagram_url: string | null;
   facebook_url: string | null;
+  organizers?: Array<{
+    name?: string;
+    website_url?: string;
+    instagram_url?: string;
+    facebook_url?: string;
+  }> | null;
   flyer_image_url: string | null;
   notes: string | null;
   created_at: string;

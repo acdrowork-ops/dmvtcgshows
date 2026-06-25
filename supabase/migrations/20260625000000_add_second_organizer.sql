@@ -1,0 +1,2 @@
+ALTER TABLE shows
+  ADD COLUMN IF NOT EXISTS organizers jsonb DEFAULT NULL;

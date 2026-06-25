@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Show } from "@/lib/supabase";
 import Link from "next/link";
 
@@ -56,11 +57,12 @@ export function ShowCard({ show }: { show: Show }) {
       : formatTime(show.start_time)
     : "";
 
+  const primaryHasLinks =
+    show.website_url || show.instagram_url || show.facebook_url || show.social_url;
+
   const hasLinks =
-    show.website_url ||
-    show.instagram_url ||
-    show.facebook_url ||
-    show.social_url;
+    primaryHasLinks ||
+    show.organizers?.some((o) => o.website_url || o.instagram_url || o.facebook_url);
 
   return (
     <div className="relative flex flex-col rounded-2xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md overflow-hidden">
@@ -134,10 +136,19 @@ export function ShowCard({ show }: { show: Show }) {
             <dd>{show.organizer}</dd>
           </div>
         )}
+
+        {show.organizers?.map((org, i) =>
+          org.name ? (
+            <div key={i} className="flex items-start gap-2">
+              <dt className="w-4 shrink-0 text-base leading-5">🧑‍💼</dt>
+              <dd>{org.name}</dd>
+            </div>
+          ) : null
+        )}
       </dl>
 
       {hasLinks && (
-        <div className="relative z-10 mt-4 flex gap-3 border-t border-gray-100 pt-4">
+        <div className="relative z-10 mt-4 flex flex-wrap gap-3 border-t border-gray-100 pt-4">
           {show.website_url && (
             <Link
               href={show.website_url}
@@ -178,6 +189,47 @@ export function ShowCard({ show }: { show: Show }) {
               Social ↗
             </Link>
           )}
+          {show.organizers?.map((org, i) => {
+            const orgHasLinks = org.website_url || org.instagram_url || org.facebook_url;
+            if (!orgHasLinks) return null;
+            return (
+              <Fragment key={i}>
+                {primaryHasLinks && i === 0 && (
+                  <span className="text-gray-300 select-none">·</span>
+                )}
+                {org.website_url && (
+                  <Link
+                    href={org.website_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium text-blue-600 hover:underline"
+                  >
+                    Website ↗
+                  </Link>
+                )}
+                {org.instagram_url && (
+                  <Link
+                    href={org.instagram_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium text-blue-600 hover:underline"
+                  >
+                    Instagram ↗
+                  </Link>
+                )}
+                {org.facebook_url && (
+                  <Link
+                    href={org.facebook_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-medium text-blue-600 hover:underline"
+                  >
+                    Facebook ↗
+                  </Link>
+                )}
+              </Fragment>
+            );
+          })}
         </div>
       )}
       </div>

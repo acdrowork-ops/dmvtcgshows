@@ -26,6 +26,27 @@ export async function signOut() {
   redirect("/admin/login");
 }
 
+function parseOrganizers(raw: FormDataEntryValue | null) {
+  if (!raw || typeof raw !== "string") return null;
+  try {
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr) || arr.length === 0) return null;
+    const cleaned = arr
+      .map((o: Record<string, string>) => {
+        const entry: Record<string, string> = {};
+        if (o.name?.trim()) entry.name = o.name.trim();
+        if (o.website_url?.trim()) entry.website_url = o.website_url.trim();
+        if (o.instagram_url?.trim()) entry.instagram_url = o.instagram_url.trim();
+        if (o.facebook_url?.trim()) entry.facebook_url = o.facebook_url.trim();
+        return entry;
+      })
+      .filter((e) => Object.keys(e).length > 0);
+    return cleaned.length > 0 ? cleaned : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function addShow(
   _: ShowState,
   formData: FormData
@@ -71,6 +92,7 @@ export async function addShow(
     website_url: str("website_url"),
     instagram_url: str("instagram_url"),
     facebook_url: str("facebook_url"),
+    organizers: parseOrganizers(formData.get("organizers")),
     flyer_image_url,
     notes: str("notes"),
     is_recurring: formData.get("is_recurring") === "on",
@@ -128,6 +150,7 @@ export async function updateShow(
     website_url: str("website_url"),
     instagram_url: str("instagram_url"),
     facebook_url: str("facebook_url"),
+    organizers: parseOrganizers(formData.get("organizers")),
     notes: str("notes"),
     is_recurring: formData.get("is_recurring") === "on",
     is_first_event: formData.get("is_first_event") === "on",

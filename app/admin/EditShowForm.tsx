@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { updateShow, type ShowState } from "@/app/admin/actions";
 import type { Show } from "@/lib/supabase";
 
@@ -21,6 +21,14 @@ const SHOW_TYPES = [
   "Sports",
 ];
 
+type OrgEntry = {
+  _id: number;
+  name: string;
+  website_url: string;
+  instagram_url: string;
+  facebook_url: string;
+};
+
 export function EditShowForm({
   show,
   onSaved,
@@ -33,9 +41,42 @@ export function EditShowForm({
     undefined
   );
 
+  const initialOrgs = (show.organizers ?? []).map((org, i) => ({
+    _id: i,
+    name: org.name ?? "",
+    website_url: org.website_url ?? "",
+    instagram_url: org.instagram_url ?? "",
+    facebook_url: org.facebook_url ?? "",
+  }));
+  const [extraOrgs, setExtraOrgs] = useState<OrgEntry[]>(initialOrgs);
+  const orgIdRef = useRef(initialOrgs.length);
+
   useEffect(() => {
     if (state && "success" in state) onSaved();
   }, [state, onSaved]);
+
+  const addOrg = () => {
+    orgIdRef.current += 1;
+    setExtraOrgs((prev) => [
+      ...prev,
+      { _id: orgIdRef.current, name: "", website_url: "", instagram_url: "", facebook_url: "" },
+    ]);
+  };
+
+  const removeOrg = (id: number) =>
+    setExtraOrgs((prev) => prev.filter((o) => o._id !== id));
+
+  const updateOrg = (id: number, field: keyof Omit<OrgEntry, "_id">, value: string) =>
+    setExtraOrgs((prev) =>
+      prev.map((o) => (o._id === id ? { ...o, [field]: value } : o))
+    );
+
+  const orgsPayload = extraOrgs.map(({ name, website_url, instagram_url, facebook_url }) => ({
+    name,
+    website_url,
+    instagram_url,
+    facebook_url,
+  }));
 
   // Unique id prefix prevents duplicate htmlFor when multiple edit forms mount
   const f = (name: string) => `edit-${show.id}-${name}`;
@@ -50,6 +91,7 @@ export function EditShowForm({
 
       <form action={action} className="flex flex-col gap-6">
         <input type="hidden" name="id" value={show.id} />
+        <input type="hidden" name="organizers" value={JSON.stringify(orgsPayload)} />
 
         {/* Show details */}
         <fieldset className="grid gap-4 sm:grid-cols-2">
@@ -247,6 +289,83 @@ export function EditShowForm({
             />
           </div>
         </fieldset>
+
+        {/* Additional organizers */}
+        {extraOrgs.length > 0 && (
+          <div className="flex flex-col gap-4">
+            {extraOrgs.map((org, idx) => (
+              <fieldset
+                key={org._id}
+                className="grid gap-4 sm:grid-cols-2 rounded-xl border border-dashed border-gray-300 p-4"
+              >
+                <div className="col-span-full flex items-center justify-between">
+                  <legend className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+                    Additional organizer {idx + 1}
+                  </legend>
+                  <button
+                    type="button"
+                    onClick={() => removeOrg(org._id)}
+                    className="text-xs text-gray-400 hover:text-gray-600"
+                  >
+                    Remove
+                  </button>
+                </div>
+
+                <div className="sm:col-span-2 flex flex-col gap-1.5">
+                  <label className={LABEL}>Organizer name</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Another TCG Club"
+                    value={org.name}
+                    onChange={(e) => updateOrg(org._id, "name", e.target.value)}
+                    className={FIELD}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className={LABEL}>Website URL</label>
+                  <input
+                    type="url"
+                    placeholder="https://..."
+                    value={org.website_url}
+                    onChange={(e) => updateOrg(org._id, "website_url", e.target.value)}
+                    className={FIELD}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className={LABEL}>Instagram URL</label>
+                  <input
+                    type="url"
+                    placeholder="https://instagram.com/..."
+                    value={org.instagram_url}
+                    onChange={(e) => updateOrg(org._id, "instagram_url", e.target.value)}
+                    className={FIELD}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className={LABEL}>Facebook URL</label>
+                  <input
+                    type="url"
+                    placeholder="https://facebook.com/..."
+                    value={org.facebook_url}
+                    onChange={(e) => updateOrg(org._id, "facebook_url", e.target.value)}
+                    className={FIELD}
+                  />
+                </div>
+              </fieldset>
+            ))}
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={addOrg}
+          className="self-start text-sm font-medium text-indigo-600 hover:text-indigo-500"
+        >
+          + Add Organizer
+        </button>
 
         {/* Links */}
         <fieldset className="grid gap-4 sm:grid-cols-2">
